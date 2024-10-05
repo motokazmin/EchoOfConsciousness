@@ -5,11 +5,13 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     private InnerBalance innerBalance;
     private Renderer playerRenderer;
+    private Terrain terrain;
 
     private void Start()
     {
         innerBalance = GetComponent<InnerBalance>();
         playerRenderer = GetComponent<Renderer>();
+        terrain = FindObjectOfType<Terrain>();
         if (innerBalance == null)
         {
             Debug.LogError("InnerBalance component not found on the Player!");
@@ -17,6 +19,10 @@ public class PlayerController : MonoBehaviour
         if (playerRenderer == null)
         {
             Debug.LogError("Renderer component not found on the Player!");
+        }
+        if (terrain == null)
+        {
+            Debug.LogError("Terrain not found in the scene!");
         }
     }
 
@@ -27,6 +33,14 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
         transform.Translate(movement * moveSpeed * Time.deltaTime);
+
+        // Keep player on terrain surface
+        if (terrain != null)
+        {
+            Vector3 position = transform.position;
+            position.y = terrain.SampleHeight(position) + 1f; // 1f is an offset to keep player slightly above ground
+            transform.position = position;
+        }
 
         // Balance changes
         if (Input.GetKeyDown(KeyCode.Q))
