@@ -427,6 +427,7 @@ GameObject:
   - component: {fileID: 1575648523}
   - component: {fileID: 1575648522}
   - component: {fileID: 1575648521}
+  - component: {fileID: 1575648526}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -535,6 +536,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1575648526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575648520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a97aff6666832845b972d96e3e2b3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire: 0.25
+  water: 0.25
+  earth: 0.25
+  air: 0.25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
